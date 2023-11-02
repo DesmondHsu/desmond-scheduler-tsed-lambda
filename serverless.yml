@@ -1,0 +1,21 @@
+service: scheduler
+
+frameworkVersion: "3.36.0"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  any:
+    handler: dist/handler.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: "{proxy+}"
