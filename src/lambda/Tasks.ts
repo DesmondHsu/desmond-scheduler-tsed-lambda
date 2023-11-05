@@ -13,19 +13,16 @@ export class Tasks {
   @Get("/:id")
   async getTask(@PathParams("id") id: string) {
     const result = await this.tasksRepository.findUnique({ where: { id } });
-    if (result) {
-      return new Success(result);
+    if (!result) {
+      return new NotFound("Task not found.");
     }
-    return new NotFound("Task not found.");
+    return new Success(result);
   }
 
   @Post("/")
   async createTask(@PathParams("scheduleId") scheduleId: string, @BodyParams() dto: Prisma.TaskCreateWithoutScheduleInput) {
     const data: Prisma.TaskCreateInput = {
-      account_id: dto.account_id,
-      start_time: dto.start_time,
-      duration: dto.duration,
-      type: dto.type,
+      ...dto,
       schedule: {
         connect: { id: scheduleId }
       }
@@ -39,8 +36,8 @@ export class Tasks {
   @Put("/:id")
   async updateTask(@PathParams("id") id: string, @BodyParams() partialTask: Prisma.TaskUpdateWithoutScheduleInput) {
     const query: Prisma.TaskUpdateArgs = {
-      where: { id },
-      data: partialTask
+      data: partialTask,
+      where: { id }
     };
     const result = await this.tasksRepository.update(query).catch((err) => {
       throw new Conflict(`Failed to update task with reason ${JSON.stringify(err)}`);

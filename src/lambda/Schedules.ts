@@ -36,8 +36,8 @@ export class Schedules {
   @Put("/:id")
   async updateSchedule(@PathParams("id") id: string, @BodyParams() partialSchedule: Prisma.ScheduleUpdateWithoutTasksInput) {
     const query = {
-      where: { id },
       data: partialSchedule,
+      where: { id },
       include: { tasks: true }
     };
     const result = await this.scheduleRepository.update(query).catch((err) => {
