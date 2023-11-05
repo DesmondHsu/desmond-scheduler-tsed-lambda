@@ -14,9 +14,7 @@
     "prisma:generate": "npx prisma generate",
     "test:lint": "eslint '**/*.{ts,js}'",
     "test:lint:fix": "eslint '**/*.{ts,js}' --fix",
-    "prettier": "prettier '**/*.{ts,js,json,md,yml,yaml}' --write",
-    "invoke:schedules": "yarn build && serverless invoke local -f getSchedules",
-    "invoke:schedule": "yarn build && serverless invoke local -f getSchedule"
+    "prettier": "prettier '**/*.{ts,js,json,md,yml,yaml}' --write"
   },
   "dependencies": {
     "@prisma/client": "^5.5.2",
@@ -38,10 +36,13 @@
     "@tsed/platform-params": "^7.42.0",
     "@tsed/platform-response-filter": "^7.42.0",
     "@tsed/platform-serverless": "^7.42.0",
+    "@tsed/platform-serverless-http": "^7.42.0",
+    "@tsed/platform-serverless-testing": "^7.42.0",
     "@tsed/platform-views": "^7.42.0",
     "@tsed/prisma": "^7.42.0",
     "@tsed/schema": "^7.42.0",
     "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
     "barrelsby": "^2.8.1",
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",
@@ -54,6 +55,7 @@
     "express": "^4.18.2",
     "method-override": "^3.0.0",
     "serverless": "^3.36.0",
+    "serverless-http": "^3.2.0",
     "serverless-offline": "^13.2.0"
   },
   "devDependencies": {
@@ -77,6 +79,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "find-my-way": "^7.7.0",
     "jest": "^29.7.0",
+    "jest-mock-extended": "^3.0.5",
     "prettier": "^3.0.3",
     "prisma": "^5.5.2",
     "supertest": "^6.3.3",

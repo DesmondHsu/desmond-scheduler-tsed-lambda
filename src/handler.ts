@@ -1,9 +1,9 @@
-import { PlatformServerless } from "@tsed/platform-serverless";
-import { Schedules } from "./lambda";
+import { PlatformServerlessHttp } from "@tsed/platform-serverless-http";
+import { PlatformExpress } from "@tsed/platform-express";
+import { Server } from "./Server";
 
-const platform = PlatformServerless.bootstrap({
-  lambda: [Schedules]
+const platform = PlatformServerlessHttp.bootstrap(Server, {
+  adapter: PlatformExpress
 });
 
-// then export the lambda
-export = platform.callbacks();
+export const handler = platform.handler();
