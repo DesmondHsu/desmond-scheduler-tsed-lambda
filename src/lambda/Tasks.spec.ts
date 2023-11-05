@@ -1,8 +1,7 @@
 import { Tasks } from "./Tasks";
 import { TasksRepository, TaskModel, ScheduleModel } from "@tsed/prisma";
 import { PlatformTest } from "@tsed/common";
-import { BadRequest, Conflict, NotFound } from "@tsed/exceptions";
-import { scheduler } from "timers/promises";
+import { Conflict, NotFound } from "@tsed/exceptions";
 import { Prisma, Task } from "@prisma/client";
 
 let instance: Tasks;
@@ -128,7 +127,7 @@ describe("Tasks", () => {
 
       const result = await instance.updateTask(existingId, updateBody);
       expect(result.status).toBe(200);
-      expect(result.body).toStrictEqual({ ...expectedResult });
+      expect(result.body).toStrictEqual(expectedResult);
     });
     it("should throw Conflict if it database fails to update item", async () => {
       updateTaskMock = Promise.reject();
@@ -162,7 +161,7 @@ describe("Tasks", () => {
           tasks: []
         }
       };
-      deleteTaskMock = Promise.resolve({ ...expectedResult } as TaskModel);
+      deleteTaskMock = Promise.resolve(expectedResult);
 
       const result = await instance.deleteTask(existingId);
       expect(result.status).toBe(204);

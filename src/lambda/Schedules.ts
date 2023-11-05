@@ -1,5 +1,5 @@
 import { Controller, Inject } from "@tsed/di";
-import { ContentType, Delete, Get, Post, Put } from "@tsed/schema";
+import { Delete, Get, Post, Put } from "@tsed/schema";
 import { PathParams, BodyParams } from "@tsed/platform-params";
 import { SchedulesRepository } from "@tsed/prisma";
 import { Prisma } from "@prisma/client";

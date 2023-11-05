@@ -1,7 +1,7 @@
 import { Schedules } from "./Schedules";
-import { SchedulesRepository, ScheduleModel, TaskModel } from "@tsed/prisma";
+import { SchedulesRepository, ScheduleModel } from "@tsed/prisma";
 import { PlatformTest } from "@tsed/common";
-import { BadRequest, Conflict, NotFound } from "@tsed/exceptions";
+import { Conflict, NotFound } from "@tsed/exceptions";
 
 let instance: Schedules;
 let findAllScheduleMock: Promise<ScheduleModel[]>;
